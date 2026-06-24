@@ -1,0 +1,38 @@
+name: rl-general
+channels:
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    # PyTorch with CUDA 12.8 (supports RTX 50xx Blackwell + RTX 30xx/40xx)
+    - torch>=2.7.0 --index-url https://download.pytorch.org/whl/cu128
+    - torchvision>=0.22.0 --index-url https://download.pytorch.org/whl/cu128
+
+    # --- Gymnasium core + environment packs ---
+    - gymnasium>=1.0.0               # base interface
+    - gymnasium[classic-control]     # CartPole, MountainCar, Pendulum
+    - gymnasium[box2d]               # LunarLander, BipedalWalker, CarRacing
+    - gymnasium[atari]               # Atari 2600 games
+    - ale-py>=0.12.0                 # Arcade Learning Environment backend
+    - autorom[accept-rom-license]    # download Atari ROMs (run: autorom --accept-license)
+
+    # --- Standard RL algorithm library (reference / baseline) ---
+    - stable-baselines3>=2.3.0
+    - sb3-contrib>=2.3.0             # extra algorithms: TQC, TRPO, RecurrentPPO
+
+    # --- Image & array processing ---
+    - opencv-python>=4.8.0
+    - numpy>=1.26.0
+    - pillow>=10.0.0
+
+    # --- Logging & visualization ---
+    - tensorboard>=2.16.0
+    - matplotlib>=3.8.0
+    - tqdm>=4.66.0
+    - wandb>=0.17.0                  # optional: Weights & Biases (cloud logging)
+
+    # --- Utilities ---
+    - ipykernel                      # Jupyter notebook support
+    - rich>=13.0.0                   # pretty terminal output
